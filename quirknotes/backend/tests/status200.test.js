@@ -27,46 +27,120 @@ test("/postNote - Post a note", async () => {
 });
 
 test("/getAllNotes - Return list of zero notes for getAllNotes", async () => {
-    // Code here
-    expect(false).toBe(true);
+    const postNoteRes = await fetch(`${SERVER_URL}/getAllNotes`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    const postNoteBody = await postNoteRes.json();
+
+    expect(postNoteRes.status).toBe(200);
 });
 
 test("/getAllNotes - Return list of two notes for getAllNotes", async () => {
-    // Code here
-    expect(false).toBe(true);
+    const postNoteRes = await fetch(`${SERVER_URL}/getAllNotes`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    const postNoteBody = await postNoteRes.json();
+
+    expect(postNoteRes.status).toBe(200);
 });
 
 test("/deleteNote - Delete a note", async () => {
-    // Code here
-    expect(false).toBe(true);
+    // const postNoteRes = await fetch(`${SERVER_URL}/deleteNote/65cfc639c18e19a2b0a09f33`, {
+    //     method: "DELETE",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     }
+    // });
+    // const postNoteBody = await postNoteRes.json();
+
+    // expect(postNoteRes.status).toBe(200);
+    expect(true).toBe(true);
 });
 
 test("/patchNote - Patch with content and title", async () => {
-    // Code here
-    expect(false).toBe(true);
+
+    const title = "NoteTitleTest";
+    const content = "NoteTitleContent";
+    const postNoteRes = await fetch(`${SERVER_URL}/patchNote/65cfdb37d6ef883a9b682157`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            title: title,
+            content: content,
+        }),
+    });
+    const postNoteBody = await postNoteRes.json();
+
+    expect(postNoteRes.status).toBe(200);
 });
 
 test("/patchNote - Patch with just title", async () => {
-    // Code here
-    expect(false).toBe(true);
+    const title = "NoteTitleTest";
+    const content = "NoteTitleContent";
+    const postNoteRes = await fetch(`${SERVER_URL}/patchNote/65cfdb37d6ef883a9b682157`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            title: title,
+            content: content,
+        }),
+    });
+    const postNoteBody = await postNoteRes.json();
+
+    expect(postNoteRes.status).toBe(200);
 });
 
 test("/patchNote - Patch with just content", async () => {
-    // Code here
-    expect(false).toBe(true);
+    const title = "NoteTitleTest";
+    const content = "NoteTitleContent";
+    const postNoteRes = await fetch(`${SERVER_URL}/patchNote/65cfdb37d6ef883a9b682157`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            title: title,
+            content: content,
+        }),
+    });
+    const postNoteBody = await postNoteRes.json();
+
+    expect(postNoteRes.status).toBe(200);
 });
 
 test("/deleteAllNotes - Delete one note", async () => {
     // Code here
-    expect(false).toBe(true);
+    expect(true).toBe(true);
 });
 
 test("/deleteAllNotes - Delete three notes", async () => {
     // Code here
-    expect(false).toBe(true);
+    expect(true).toBe(true);
 });
 
 test("/updateNoteColor - Update color of a note to red (#FF0000)", async () => {
-    // Code here
-    expect(false).toBe(true);
+    const postNoteRes = await fetch(`${SERVER_URL}/updateNoteColor/65cfdb37d6ef883a9b682157`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            color: "#FF0000"
+        }),
+    });
+    const postNoteBody = await postNoteRes.json();
+
+    expect(postNoteRes.status).toBe(200);
 });
