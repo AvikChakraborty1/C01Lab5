@@ -1,3 +1,24 @@
+let id;
+
+beforeAll(async () => {
+    const title = "NoteTitleTest";
+    const content = "NoteTitleContent";
+
+    const postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            title: title,
+            content: content,
+        }),
+    });
+
+    const postNoteBody = await postNoteRes.json();
+    id = postNoteBody.insertedId;
+})
+
 test("1+2=3, empty array is empty", () => {
     expect(1 + 2).toBe(3);
     expect([].length).toBe(0);
@@ -69,7 +90,7 @@ test("/patchNote - Patch with content and title", async () => {
 
     const title = "NoteTitleTest";
     const content = "NoteTitleContent";
-    const postNoteRes = await fetch(`${SERVER_URL}/patchNote/65cfdb37d6ef883a9b682157`, {
+    const postNoteRes = await fetch(`${SERVER_URL}/patchNote/${id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -87,7 +108,7 @@ test("/patchNote - Patch with content and title", async () => {
 test("/patchNote - Patch with just title", async () => {
     const title = "NoteTitleTest";
     const content = "NoteTitleContent";
-    const postNoteRes = await fetch(`${SERVER_URL}/patchNote/65cfdb37d6ef883a9b682157`, {
+    const postNoteRes = await fetch(`${SERVER_URL}/patchNote/${id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -105,7 +126,7 @@ test("/patchNote - Patch with just title", async () => {
 test("/patchNote - Patch with just content", async () => {
     const title = "NoteTitleTest";
     const content = "NoteTitleContent";
-    const postNoteRes = await fetch(`${SERVER_URL}/patchNote/65cfdb37d6ef883a9b682157`, {
+    const postNoteRes = await fetch(`${SERVER_URL}/patchNote/${id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -131,7 +152,7 @@ test("/deleteAllNotes - Delete three notes", async () => {
 });
 
 test("/updateNoteColor - Update color of a note to red (#FF0000)", async () => {
-    const postNoteRes = await fetch(`${SERVER_URL}/updateNoteColor/65cfdb37d6ef883a9b682157`, {
+    const postNoteRes = await fetch(`${SERVER_URL}/updateNoteColor/${id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
